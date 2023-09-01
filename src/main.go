@@ -2,12 +2,13 @@ package main
 
 import (
 	"flag"
+	"os"
 	"os/exec"
 	"path/filepath"
 )
 
-const GIT_ACCOUNT_PATH = "./git_accounts.json"
-const REPOSITORIES = "./repositories.json"
+var GIT_ACCOUNT_PATH = os.Getenv("GAM") + "/git_accounts.json"
+var REPOSITORIES = os.Getenv("GAM") + "/repositories.json"
 
 func setGitConfig(path string) {
 	file := openJson(REPOSITORIES)
