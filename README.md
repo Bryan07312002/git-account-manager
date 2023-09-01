@@ -35,3 +35,46 @@ To set a account in git based at choosen repository
 ```sh
 $ gam --set --path {desired_repository_path}
 ```
+
+## How to install 
+
+### Linux
+Pre requisites
+    - go
+    - git
+    
+Download this repository
+
+```sh
+$ git clone https://github.com/Bryan07312002/git-account-manager.git
+$ cd git-account-manager
+```
+
+Build the binary
+```sh
+$ go build ./src/*.go
+```
+
+Send to /bin
+```sh
+$ sudo mv accounts /bin/gam
+```
+
+create basic json folders and files
+```sh
+$ mkdir ~/.gam_config
+$ touch ~/.gam_config/git_accounts.json
+$ touch ~/.gam_config/repositories.json
+$ echo [] > ~/.gam_config/git_accounts.json
+$ echo [] > ~/.gam_config/repositories.json
+```
+
+add this to your .bashrc file
+```bash
+export GAM=~/.gam_config
+
+function git() {
+    command gam --set # Run gam set command to set right account
+    command git "$@"  # Run the original git command
+}
+```
